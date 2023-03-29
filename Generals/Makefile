@@ -1,4 +1,5 @@
-GENERALS_OBJ=../Build/generals.o
+BUILD_DIR=../Build
+GENERALS_OBJ=$(BUILD_DIR)/generals.o
 
 $(GENERALS_OBJ): generals.c generals.h
 	gcc -Wall -o $(GENERALS_OBJ) -c generals.c
