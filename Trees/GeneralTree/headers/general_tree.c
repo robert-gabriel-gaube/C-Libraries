@@ -97,7 +97,9 @@ void add_new_node(GENERAL_TREE* tree, unsigned value, unsigned value_parent) {
     } else {
         NODE_P *parent = get_node_by_value(&(tree -> root), value_parent);
         if(parent == NULL) {
-            printf("No node in the tree with the value: %u\n", value_parent);
+            char message[100];
+            sprintf(message, "No node in the tree with this value %u", value_parent);
+            logger(Warning, message);
             return;
         }
         NODE_P *child = get_first_null_child(parent);
@@ -216,5 +218,3 @@ void dealloc_tree(GENERAL_TREE *tree) {
     dealloc_tree_recursive(tree -> root);
     tree -> root = NULL;
 }
-
-//======================================

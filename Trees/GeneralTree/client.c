@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Headers/general_tree.h"
+#include "headers/general_tree.h"
 #include "../../Generals/generals.h"
 #define FILENAME "tree.txt"
 
@@ -32,6 +32,9 @@ int main() {
         add_new_node(&tree, child, parent);
     }
     close_file(input_file);
+    
+    // Invalid node
+    add_new_node(&tree, 90, 98);
 
     // Some operations used
     printf("Height is: %u\n", tree_height(tree));
