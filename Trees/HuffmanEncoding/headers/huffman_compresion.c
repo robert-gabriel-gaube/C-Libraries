@@ -126,25 +126,14 @@ void create_encoding(HUFFMAN_ENCODING huffman_encoding) {
 
     for(unsigned i = 0; i < NUMBER_CHARACTERS; ++i) {
         if(huffman_encoding->characters[i].frequency != 0) {
-            NODE_P single_node = (NODE_P)malloc(sizeof(NODE));
-            if(single_node == NULL) {
-                logger(Error, "Not enough available space");
-            }
-            single_node->character = position_character(i);
-            single_node->frequency = huffman_encoding->characters[i].frequency;
-            single_node->left = NULL;
-            single_node->right = NULL;
+            NODE_P single_node = create_new_node(position_character(i), huffman_encoding->characters[i].frequency, NULL, NULL);
             enqueue_priority_queue(pq, single_node);
         }
     }
     while(size_priority_queue(pq) != 1) {
         NODE_P node1 = dequeue_priority_queue(pq);
         NODE_P node2 = dequeue_priority_queue(pq);
-        NODE_P new_combined_node = (NODE_P)malloc(sizeof(NODE));
-        new_combined_node->character = '-';
-        new_combined_node->frequency = node1->frequency + node2->frequency;
-        new_combined_node->left = node1;
-        new_combined_node->right = node2;
+        NODE_P new_combined_node = create_new_node('-', node1->frequency + node2->frequency, node1, node2);
         enqueue_priority_queue(pq, new_combined_node);
     }
     NODE_P huffman_tree = dequeue_priority_queue(pq);
