@@ -1,13 +1,15 @@
 BUILD_DIR=../../build
 GENERALS_OBJ=$(BUILD_DIR)/generals.o
 GENERALS_DIR=../../Generals
-GENERAL_TREE_OBJ=$(BUILD_DIR)/general_tree.o
+OBJ=$(BUILD_DIR)/general_tree.o
+HEADER_FILE=headers/general_tree.h
+C_FILE=headers/general_tree.c
 
-client.exe: $(GENERALS_OBJ) $(GENERAL_TREE_OBJ) client.c
-	gcc -Wall -o client.exe client.c $(GENERAL_TREE_OBJ) $(GENERALS_OBJ)
+client.exe: $(GENERALS_OBJ) $(OBJ) client.c
+	gcc -Wall -o client.exe client.c $(OBJ) $(GENERALS_OBJ)
 
-$(GENERAL_TREE_OBJ): headers/general_tree.c headers/general_tree.h
-	gcc -Wall -o $(GENERAL_TREE_OBJ) -c headers/general_tree.c
+$(OBJ): $(C_FILE) $(HEADER_FILE)
+	gcc -Wall -o $(OBJ) -c $(C_FILE)
 
 $(GENERALS_OBJ):
 	make -C $(GENERALS_DIR)
@@ -19,5 +21,5 @@ test_memory:
 	valgrind ./client.exe
 
 clean:
-	rm $(GENERAL_TREE_OBJ) client.exe
+	rm $(OBJ) client.exe
 

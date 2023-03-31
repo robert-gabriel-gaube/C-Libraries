@@ -1,9 +1,9 @@
 BUILD_DIR=../../build
 GENERALS_OBJ=$(BUILD_DIR)/generals.o
 GENERALS_DIR=../../Generals
-OBJ=$(BUILD_DIR)/binary_tree.o
-HEADER_FILE=headers/binary_tree.h
-C_FILE=headers/binary_tree.c
+OBJ=$(BUILD_DIR)/huffman_compression.o
+HEADER_FILE=headers/huffman_compresion.h
+C_FILE=headers/huffman_compresion.c
 
 client.exe: $(GENERALS_OBJ) $(OBJ) client.c
 	gcc -Wall -o client.exe client.c $(OBJ) $(GENERALS_OBJ)
