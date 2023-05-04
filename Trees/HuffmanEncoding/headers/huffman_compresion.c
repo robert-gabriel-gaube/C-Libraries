@@ -66,7 +66,7 @@ void store_encoding(NODE_P root, HUFFMAN_ENCODING huffman_encoding, char* encodi
         if(root->character != '-') {
             unsigned index = character_position(root->character);
             strncpy(huffman_encoding->characters[index].encoding, encoding, step);
-            huffman_encoding->characters[index].encoding[step + 1] = 0;
+            huffman_encoding->characters[index].encoding[step] = 0;
         }
         encoding[step] = '0';
         store_encoding(root->left, huffman_encoding, encoding, step + 1);
